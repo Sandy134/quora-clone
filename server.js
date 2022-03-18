@@ -16,7 +16,7 @@ db.connect();
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
-cors;
+// cors;
 app.use((req, res, next) => {
   req.header("Access-Control-Allow-Origin", "*");
   req.header("Access-Control-Allow-Headers", "*");
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 
 //routes
 
-// app.use("/api", router);
+app.use("/api", router);
 
 // app.use("/uploads", express.static(path.join(__dirname, "/../uploads")));
 // app.use(express.static(path.join(__dirname, "/../frontend/build")));
@@ -40,11 +40,11 @@ app.use((req, res, next) => {
 
 app.use(cors());
 
-// if (process.env.NODE_ENV == "production") {
-//   app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 //server listening
-app.listen(process.env.PORT || PORT, () => {
+app.listen(PORT, () => {
   console.log(`Listening on port no ${PORT}`);
 });
