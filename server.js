@@ -27,22 +27,22 @@ app.use((req, res, next) => {
 
 app.use("/api", router);
 
-// app.use("/uploads", express.static(path.join(__dirname, "/../uploads")));
-// app.use(express.static(path.join(__dirname, "/../frontend/build")));
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
-// app.get("*", (req, res) => {
-//   try {
-//     res.sendFile(path.join(`${__dirname}/../frontend/build/index.html`));
-//   } catch (e) {
-//     res.send("Oops! unexpected error");
-//   }
-// });
+app.get("*", (req, res) => {
+  try {
+    res.sendFile(path.join(`${__dirname}/frontend/build/index.html`));
+  } catch (e) {
+    res.send("Oops! unexpected error");
+  }
+});
 
 app.use(cors());
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
 
 //server listening
 app.listen(PORT, () => {
