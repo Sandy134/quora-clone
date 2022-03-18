@@ -16,12 +16,12 @@ db.connect();
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
-//cors
-// app.use((req, res, next) => {
-//   req.header("Access-Control-Allow-Origin", "*");
-//   req.header("Access-Control-Allow-Headers", "*");
-//   next();
-// });
+cors;
+app.use((req, res, next) => {
+  req.header("Access-Control-Allow-Origin", "*");
+  req.header("Access-Control-Allow-Headers", "*");
+  next();
+});
 
 //routes
 
@@ -40,9 +40,9 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 app.use(cors());
 
-if (process.env.NODE_ENV == "production") {
-  app.use(express.static("client/build"));
-}
+// if (process.env.NODE_ENV == "production") {
+//   app.use(express.static("client/build"));
+// }
 
 //server listening
 app.listen(process.env.PORT || PORT, () => {
